@@ -39,6 +39,17 @@ npm install
 npm run dev
 ```
 
+> **If `npm install` fails while building `better-sqlite3`** (an error mentioning
+> `node-gyp rebuild` and a failed download from `nodejs.org`): this package already
+> ships prebuilt native binaries for Linux/macOS/Windows (x64 and arm64), so the
+> compile step isn't actually needed — it just needs to be skipped. This happens on
+> networks that allow `npmjs.org`/`github.com` but block `nodejs.org` (some corporate
+> networks, CI runners, and sandboxes). Fix it with:
+> ```bash
+> npm install --ignore-scripts
+> ```
+> This was verified to work cleanly and produce a fully working app.
+
 Open **http://localhost:3000** in your browser. The app will:
 
 - Create `data/aurelia.db` automatically (an ignored, local-only file).
