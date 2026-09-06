@@ -46,7 +46,7 @@ export function createSimple(cfg: SimpleTableConfig, fields: Record<string, any>
   const placeholders = keys.map(() => "?").join(",");
   db.prepare(
     `INSERT INTO ${cfg.table} (${keys.join(",")}) VALUES (${placeholders})`
-  ).run(...keys.map((k) => withMeta[k]));
+  ).run(...keys.map((k) => (withMeta as Record<string, any>)[k]));
   return getSimple(cfg, id);
 }
 
